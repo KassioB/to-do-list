@@ -1,9 +1,10 @@
 import { Plus } from "feather-icons-react";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import "./App.css";
 import { Button } from "./components/Button";
 import { Card } from "./components/Card";
 import { Input } from "./components/Input";
+import { getLocalStorage, setLocalStorage } from "./utils/localstorage.util";
 
 interface TaskInterface {
   title: string;
@@ -15,6 +16,13 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const counter = tasks.filter((item) => !item.completed).length;
 
+
+  useEffect(() => {
+    const data = getLocalStorage("tasks") as TaskInterface[];
+    setTasks(data);
+  }, [])
+
+
   function handleAddTask(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -23,20 +31,25 @@ function App() {
       completed: false,
     };
 
+    const newData = [newTask, ...tasks];
+
     setInputValue("");
-    setTasks([newTask, ...tasks]);
+    setTasks(newData);
+    setLocalStorage("tasks", newData);
   }
 
   function handleDeleteTask(index: number) {
     const newList = [...tasks];
     newList.splice(index, 1);
     setTasks(newList);
+    setLocalStorage("tasks", newList);
   }
 
   function handleCheckTask(index: number, value: boolean) {
     const newList = [...tasks];
     newList[index].completed = value;
     setTasks(newList);
+    setLocalStorage("tasks", newList);
   }
 
   return (
