@@ -13,6 +13,7 @@ interface TaskInterface {
 function App() {
   const [tasks, setTasks] = useState<TaskInterface[]>([]);
   const [inputValue, setInputValue] = useState("");
+  const counter = tasks.filter((item) => !item.completed).length;
 
   function handleAddTask(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -65,12 +66,9 @@ function App() {
         </section>
 
         <footer className="footer">
-          <span className="counter">Lorem ipsum dolor sit amet</span>
+          <span className="counter">Your remaing todos: {counter}</span>
           <p className="message">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio,
-            tempore! Eligendi ipsam voluptas voluptatem perferendis officiis,
-            iste numquam possimus cumque iure magni corporis ex in magnam
-            recusandae adipisci non consectetur.
+            Job while they sleep.
           </p>
         </footer>
       </div>
