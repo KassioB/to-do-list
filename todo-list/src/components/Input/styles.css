@@ -1,0 +1,10 @@
+.task-input {
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #b1b1b1;
+  padding: 0.4em;
+
+  &:focus {
+    outline: 0;
+  }
+}

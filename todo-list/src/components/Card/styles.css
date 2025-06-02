@@ -1,0 +1,22 @@
+.card {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.4em 0.8em;
+  border: 1px solid #777777;
+  border-radius: 0.8em;
+
+  label {
+    color: #4f4f4f;
+    font-weight: 500;
+  }
+
+  input:checked ~ label {
+    color: #777777;
+    text-decoration: line-through;
+  }
+
+  .button {
+    margin-left: auto;
+  }
+}
